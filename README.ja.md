@@ -2,6 +2,8 @@
 
 **Skills for Gen AI** · [English](README.md) · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · 日本語
 
+*A skill makes you own the real skill.*
+
 **足りない知識と能力を補い、目標を自力で達成できるようになるまで**教える AI スキルです。習得は検証で確かめます。
 
 ## なぜ必要か

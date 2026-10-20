@@ -2,6 +2,8 @@
 
 **Skills for Gen AI** · English · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
+*A skill makes you own the real skill.*
+
 An AI skill that **fills in the knowledge and abilities you're missing until you can reach your goal on your own**, with verification.
 
 ## Why
