@@ -1,6 +1,6 @@
 # coach-me
 
-一個 Claude skill：**把你缺的知識和能力補齊，直到你能獨立完成目標**，並經過驗證。
+一個 Claude skill： A skill makes you own the real skill. **把你缺的知識和能力補齊，直到你能獨立完成目標**，並經過驗證。
 
 ## 為什麼需要它
 
