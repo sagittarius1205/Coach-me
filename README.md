@@ -1,62 +1,68 @@
 # coach-me
 
-一個 Claude skill：**把你缺的知識和能力補齊，直到你能獨立完成目標**，並經過驗證。
+**Skills for Gen AI** · English · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-## 為什麼需要它
+An AI skill that **fills in the knowledge and abilities you're missing until you can reach your goal on your own**, with verification.
 
-很多人用 grill-me 檢驗計畫時，其實還不懂背後的知識，只是把 AI 給的推薦答案複製貼上。結果專案停住，或往錯的方向走。
+## Why
 
-coach-me 和 grill-me 分工，不重疊：
+Many people use grill-me to stress-test a plan without understanding the knowledge behind it. They copy-paste the AI's recommended answers, and the project stalls or heads in the wrong direction.
 
-| | 檢驗什麼 | 碰你的真實計畫嗎 |
+coach-me and grill-me split the work with no overlap:
+
+| | What it tests | Touches your real plan? |
 |---|---|---|
-| grill-me | 你的**決定**站不站得住 | 會 |
-| coach-me | 你有沒有**能力**自己做這個決定 | 不會，只用假想的旁支情境驗證 |
+| grill-me | Whether your **decisions** hold up | Yes |
+| coach-me | Whether you have the **ability** to make them yourself | No — it verifies with hypothetical side scenarios only |
 
-## 安裝
+## Install
+
+Claude Code (or any tool that supports the `SKILL.md` Agent Skills format):
 
 ```bash
 git clone https://github.com/sagittarius1205/Coach-me ~/.claude/skills/coach-me
 ```
 
-## 兩種用法
+For other chat AIs, paste the contents of `SKILL.md` into the system prompt or custom instructions.
 
-**1. 獨立使用**：說「coach me」「教會我…」「我需要學什麼才能…」。
+## Two ways to use it
 
-- 單一技能：直接進入「診斷 → 教 → 你自己做 → 用新題目驗證」的迴圈。
-- 專案或大目標：先探測你的起點，把目標縮小成第一版，再給你一張最多 5 項的能力地圖。
+**1. Standalone** — say "coach me", "teach me until I get it", or "what do I need to learn to…".
 
-**2. 搭配 grill-me**：grill 的過程中，如果你出現以下任一種「盲從信號」，coach-me 會用一句話提議先補課，並說明原因：
+- A single skill: goes straight into the loop of diagnose → teach → you do it → verify with a new task.
+- A project or large goal: probes your starting level, shrinks the goal to a first version, then gives you a capability map of at most 5 items.
 
-- 直接採用推薦答案，或只回「好」「照你說的」；
-- 講不出自己選擇的理由，只能重複 AI 說過的話；
-- 說自己不懂某個名詞或選項。
+**2. With grill-me** — during a grilling session, if you show any of these "blind-following signals", coach-me offers a short detour in one line and says why:
 
-你可以拒絕。拒絕的話，那個決定會被標成 `⚠ 未驗證理解`。接受的話，coach-me 只教判斷這一題需要的知識，用假想情境驗證，然後讓你回到原題**先自己作答**，再看推薦答案。
+- adopting the recommended answer as-is, or replying only "OK" / "whatever you said";
+- being unable to justify a choice beyond repeating the AI;
+- saying you don't understand a term or option.
 
-## 範例：目標是日文 N1
+You can decline; that decision is then marked `⚠ understanding not verified`. If you accept, coach-me teaches only what that one question needs, verifies with a hypothetical scenario, then sends you back to **answer the original question yourself first** before you see the recommended answer.
 
-coach-me 先用 1–2 題探測你的程度。假設你已經過了 N2：
+## Example: reaching JLPT N1
+
+coach-me first probes your level with 1–2 questions. Suppose you've already passed N2:
 
 ```
-日文 N1（第一版：N2 → N1 讀解與文法）  0/5
+JLPT N1 (v1: N2 → N1 reading & grammar)  0/5
 
-▶ 1. 能分辨 N1 近義文法（〜ものを／〜ものの）   ← 現在
-□ 2. 能讀懂 N1 長文並指出作者主張
-□ 3. 能在時限內完成一回讀解
-□ 4. 能認得 N1 常考詞彙（累積型）
-□ 5. 能聽懂自然語速的新聞（累積型）
-⏸ 報考梯次、教材選擇 → grill-me
+▶ 1. Can tell apart similar N1 grammar (〜ものを／〜ものの)   ← now
+□ 2. Can read an N1 essay and state the author's claim
+□ 3. Can finish a reading section within the time limit
+□ 4. Can recognize common N1 vocabulary (accumulation)
+□ 5. Can follow news at natural speed (accumulation)
+⏸ Exam date, textbook choice → grill-me
 ```
 
-- 第 1–3 項在對話中教，用新題目驗證，再針對你的答案追問一個細節。
-- 第 4–5 項是累積型能力：coach-me 教你練習方法，設一個檢查點（例如「隨機 20 個詞答對 16 個」）。你在對話外練習，回來後用新抽的題目驗證。
-- 聽力在文字對話中沒辦法驗證，報告會照實寫出「未測試」。
+- Items 1–3 are taught in the chat, verified with a new task, then one follow-up on a detail of your answer.
+- Items 4–5 are accumulation skills: coach-me teaches a practice method and sets a checkpoint (e.g. "16 of 20 random words"). You practice outside the chat and are verified with a fresh sample when you return.
+- Listening can't be verified in a text chat, so the report says "not tested".
 
-對話結束時會給你一張**進度卡**，下次貼回來就能接著繼續。
+At the end you get a **progress card**; paste it back next time to continue.
 
-## 它不會做的事
+## What it won't do
 
-- 不替你做專案上的決定，那是 grill-me 的工作。
-- 不給「熟練度 87 分」這種分數，只看你能不能獨立完成具體任務。
-- 不把對話中的通過當成正式資格或證照。
+- Make project decisions for you — that's grill-me's job.
+- Give scores like "87% mastery" — it only checks whether you can complete a concrete task on your own.
+- Treat a pass in chat as a formal qualification or certificate.
